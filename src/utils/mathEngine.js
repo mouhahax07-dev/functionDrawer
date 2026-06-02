@@ -160,10 +160,21 @@ export const getFactoredForm = (expression, roots) => {
   if (!roots || roots.length === 0) return null;
   if (/(sin|cos|tan|cot|log|sqrt|abs)/.test(expression)) return null;
 
-  let testX = 0;
-  while (roots.some(r => Math.abs(r - testX) < 0.1)) {
-    testX += 1;
+ let testX = 0;
+
+while (true) {
+  let found = false;
+
+  for (const r of roots) {
+    if (Math.abs(r - testX) < 0.1) {
+      found = true;
+      break;
+    }
   }
+
+  if (!found) break;
+  testX += 1;
+}
 
   const y = evaluateFunction(expression, testX);
   if (y === null || isNaN(y)) return null;
