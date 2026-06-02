@@ -68,13 +68,13 @@ export default function App() {
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', color: '#BB86FC' }}>Analiza wzorów funckji złożonych</h1>
         
-        {/* Żeby panele w środku wyglądały dobrze, możesz podmienić u siebie backgroundy w plikach z #f4f4f4 na #1E1E1E lub po prostu zostawić, globalny css i tak zmieni tekst na jasny */}
+        {}
         <FunctionInput funcs={funcs} updateFunc={updateFunc} addFunc={addFunc} removeFunc={removeFunc} activeId={activeId} setActiveId={setActiveId} />
         <VirtualKeyboard onKeyPress={handleKeyPress} onBackspace={handleBackspace} onClear={handleClear} />
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px' }}>
           <div>
-            {/* Warunkowe wyświetlanie suwaka A! */}
+            {}
             {hasParamA && (
               <ParameterSlider aParam={aParam} setAParam={setAParam} />
             )}
@@ -83,7 +83,7 @@ export default function App() {
           <div>
             <DerivativeSlider tangentX={tangentX} setTangentX={setTangentX} />
             <div style={{ padding: '20px', background: '#1E1E1E', borderRadius: '8px', marginTop: '20px', borderLeft: '4px solid #BB86FC' }}>
-              <h3 style={{ marginTop: 0 }}>Analiza f1 🔬</h3>
+              <h3 style={{ marginTop: 0 }}>Analiza F1</h3>
               <p><strong>Wyrażenie:</strong> {mainFunc?.eq || 'Brak...'}</p>
               
               {factoredForm && (
