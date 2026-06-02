@@ -66,7 +66,7 @@ export default function App() {
   return (
     <div style={{ backgroundColor: '#121212', color: '#E0E0E0', minHeight: '100vh', padding: '20px', fontFamily: 'sans-serif' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <h1 style={{ textAlign: 'center', color: '#BB86FC' }}>Analiza wzorów funckji złożonych</h1>
+        <h1 style={{ textAlign: 'center', color: '#BB86FC' }}>Analiza wzorów złożonych na graphie</h1>
         
         {}
         <FunctionInput funcs={funcs} updateFunc={updateFunc} addFunc={addFunc} removeFunc={removeFunc} activeId={activeId} setActiveId={setActiveId} />
