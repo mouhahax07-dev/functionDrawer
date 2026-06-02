@@ -160,39 +160,29 @@ export const getFactoredForm = (expression, roots) => {
   if (!roots || roots.length === 0) return null;
   if (/(sin|cos|tan|cot|log|sqrt|abs)/.test(expression)) return null;
 
- let testX = 0;
+  // NOWOŚĆ: Wyciągamy funkcję sprawdzającą poza pętlę. 
+  // ESLint w Vercelu będzie teraz w 100% zadowolony.
+  const isTooCloseToRoot = (val) => roots.some(r => Math.abs(r - val) < 0.1);
 
-while (true) {
-  let found = false;
-
-  for (const r of roots) {
-    if (Math.abs(r - testX) < 0.1) {
-      found = true;
-      break;
-    }
+  let testX = 0;
+  // Używamy zdefiniowanej wcześniej funkcji w warunku pętli
+  while (isTooCloseToRoot(testX)) {
+    testX += 1;
   }
-
-  if (!found) break;
-  testX += 1;
-}
 
   const y = evaluateFunction(expression, testX);
   if (y === null || isNaN(y)) return null;
 
   let product = 1;
-  roots.forEach(r => {
-    product *= (testX - r);
-  });
-
+  roots.forEach(r => { product *= (testX - r); });
   if (Math.abs(product) < 0.0001) return null;
 
   let a = y / product;
-  a = Math.round(a * 100) / 100;
-
+  a = Math.round(a * 100) / 100; 
+  
   if (Math.abs(a) < 0.01 || Math.abs(a) > 100) return null;
 
   let factoredStr = a === 1 ? '' : (a === -1 ? '-' : `${a}`);
-
   roots.forEach(r => {
     if (r === 0) factoredStr += 'x';
     else if (r > 0) factoredStr += `(x - ${r})`;
